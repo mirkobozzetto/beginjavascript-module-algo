@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const readFileContent = (file) => {
   const filePath = path.join(__dirname, file);
@@ -34,7 +34,7 @@ export const part2 = (file) => {
 };
 
 // Should be 24000
-console.log('Test part1', part1('./data.txt'));
+console.log("Test part1", part1("./data.txt"));
 
 // Should be 212117
-console.log('Test part1', part2('./data.txt'));
+console.log("Test part1", part2("./data.txt"));
