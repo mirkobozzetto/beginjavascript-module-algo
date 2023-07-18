@@ -27,9 +27,9 @@ npm -v
 - Ouvrir un terminal
 
 ```bash
-git clone https://github.com/Melvynx/beginjavascript-setup-vscode.git
+git clone https://github.com/Melvynx/beginjavascript-module-algo.git
 
-cd beginjavascript-setup-vscode
+cd beginjavascript-module-algo
 
 npm install
 ```
@@ -46,8 +46,16 @@ Voilà !
 
 ## Test du projet
 
-Lancer les commandes pour exécuté notre fichier `script.ts` :
+Pour run tes exercices, il faudra run le fichier JavaScript correspondant.
+
+Exercice 1 :
 
 ```bash
-npm run start
+node exercices/1/1.js
+```
+
+Exercice 2 :
+
+```bash
+node exercices/2/2.js
 ```
