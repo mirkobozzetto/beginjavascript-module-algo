@@ -1,9 +1,13 @@
 import fs from 'fs';
-import path from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const currentFilePath = fileURLToPath(import.meta.url);
+export const currentDirPath = dirname(currentFilePath);
 
 function readFileContent(file) {
-  const filePath = path.join(__dirname, file);
-  const fileContent = fs.readFileSync(filePath).toString();
+  const p = join(currentDirPath, file);
+  const fileContent = fs.readFileSync(p).toString();
   return fileContent;
 }
 

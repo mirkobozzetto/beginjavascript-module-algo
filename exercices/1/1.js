@@ -1,11 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const readFileContent = (file) => {
-  const filePath = path.join(__dirname, file);
-  const fileContent = fs.readFileSync(filePath).toString();
+const currentFilePath = fileURLToPath(import.meta.url);
+export const currentDirPath = dirname(currentFilePath);
+
+function readFileContent(file) {
+  const p = join(currentDirPath, file);
+  const fileContent = fs.readFileSync(p).toString();
   return fileContent;
-};
+}
 
 const findLargestSum = (file) => {
   // 🦁 Utilise readFileContent pour lire le fichier et stock dans une variable fileContent

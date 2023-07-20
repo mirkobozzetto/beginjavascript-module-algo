@@ -1,29 +1,25 @@
-export class Robot {
+class Robot {
   constructor() {
     this.position = [0, 0];
     this.battery = 100;
   }
 
   logBattery() {
-    let batterie = '';
-    let saveBattery = this.battery;
-    // show 🟩 each 10% or 🟥 each 10% with no battery
+    let battery = '';
+    let copyBattery = this.battery;
+
     for (let i = 0; i < 10; i++) {
-      if (saveBattery > 0) {
-        batterie += '🟩';
-      } else {
-        batterie += '🟥';
-      }
-      saveBattery -= 10;
+      battery += copyBattery > 0 ? '🟩' : '🟥';
+      copyBattery -= 10;
     }
 
-    console.log(batterie);
+    console.log(battery);
   }
 }
 
-// create a class named of a house piece
-export class Piece {
+class Piece {
   /**
+   *
    * @param {"clean" | "dirty" | "clean_by_robot"} state
    */
   constructor(state) {
@@ -43,7 +39,7 @@ export class Piece {
   }
 }
 
-export class House {
+class House {
   /**
    *
    * @param {Piece[][]} layout
@@ -54,20 +50,15 @@ export class House {
     this.robot = robot;
   }
 
-  logLayout() {
+  logHouse() {
     const layoutString = this.layout
       .map((row, i) => {
         return row
           .map((piece, j) => {
-            if (
-              this.robot &&
-              this.robot.position[0] === i &&
-              this.robot.position[1] === j
-            ) {
+            if (this.robot.position[0] === i && this.robot.position[1] === j) {
               return '🤖';
-            } else {
-              return piece.getEmoji();
             }
+            return piece.getEmoji();
           })
           .join('');
       })
@@ -77,29 +68,27 @@ export class House {
   }
 }
 
-export const createLayout = (size) => {
+const createLayout = (height, width) => {
   const houseLayout = [];
 
-  for (let i = 0; i < size[0]; i++) {
+  for (let i = 0; i < height; i++) {
     const row = [];
-
-    for (let j = 0; j < size[1]; j++) {
+    for (let y = 0; y < width; y++) {
       const random = Math.random();
       row.push(new Piece(random < 0.5 ? 'clean' : 'dirty'));
     }
     houseLayout.push(row);
   }
+
   return houseLayout;
 };
 
 const play = () => {
-  const houseSize = [5, 5];
-
-  let robot = new Robot();
-  let house = new House(createLayout(houseSize), robot);
+  const robot = new Robot();
+  const house = new House(createLayout(5, 5), robot);
 
   robot.logBattery();
-  house.logLayout();
+  house.logHouse();
 };
 
 play();

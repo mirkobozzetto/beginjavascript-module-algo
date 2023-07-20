@@ -172,7 +172,7 @@ export class House {
   }
 
   isAllClean() {
-    return this.layout.some((row) => row.some((piece) => piece.isDirty));
+    return !this.layout.some((row) => row.some((piece) => piece.isDirty));
   }
 
   clean(position) {
