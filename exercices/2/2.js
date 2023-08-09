@@ -1,21 +1,12 @@
-class Robot {
-  constructor(battery) {
-    this.position = [0, 0];
-    this.battery = battery;
-  }
-
-  logBattery() {
-    let battery = '';
-    let copyBattery = this.battery;
-
-    for (let i = 0; i < 10; i++) {
-      battery += copyBattery > 0 ? '🟩' : '🟥';
-      copyBattery -= 10;
-    }
-
-    console.log(battery);
-  }
-}
+// 🦁 Créer une class Robot
+// - Utilise `constructor` pour ajouter les propriétés `battery` et `position`
+// - Créer une méthode `logBattery`
+//   - Pour affiché la batterie tu peux utiliser cette méthode :
+//     On va copié la battery dans une variable `batteryCopy` et créer une boucle qui va de 0 à 10,
+//     On va créer une variable batterie qui va être égale à une string vide
+//     ensuite si la battery est supérieur à 0, on ajoute un carré vert
+//     sinon un carré rouge
+//     puis on vient décrémenter la batteryCopy de 10
 
 // 🦁 Créer une class Piece
 // - Utilise `constructor` pour ajouter la propriété `state`
@@ -23,27 +14,6 @@ class Robot {
 //   * `clean` => 🧼
 //   * `clean_by_robot` => 🧽
 //   * `dirty` => 💩
-class Piece {
-  /**
-   *
-   * @param {"clean" | "dirty" | "clean_by_robot"} state
-   */
-  constructor(state) {
-    this.state = state;
-  }
-
-  getEmoji() {
-    if (this.state === 'clean') {
-      return '🧼';
-    }
-
-    if (this.state === 'clean_by_robot') {
-      return '🧽';
-    }
-
-    return '💩';
-  }
-}
 
 // 🦁 Créer une class House
 //   - Elle prends en propritétés `layout` qui corerspond à un tableau de tableau de pièces
@@ -60,26 +30,6 @@ class Piece {
 //   Ensuite on `.join` les pièces de la ligne
 //   Et on `.join` les lignes avec des retours à la ligne
 //   💡 .join("\n")
-
-class House {
-  /**
-   *
-   * @param {Piece[][]} layout
-   * @param {Robot} robot
-   */
-  constructor(layout, robot) {
-    this.layout = layout;
-    this.robot = robot;
-  }
-
-  logHouse() {
-    const layoutString = this.layout.map((row, i) => {
-      return row.map((piece, j) => {
-        return piece.getEmoji();
-      });
-    });
-  }
-}
 
 // 🦁 Finalement créer une function `createLayout` qui prends en paramètre x et y
 // Cette function va générer un layout de x par y pièces

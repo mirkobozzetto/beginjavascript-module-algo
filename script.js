@@ -1,64 +1,38 @@
-import { prompt } from './helper.js';
-
-function validateNumber(number) {
-  if (Number.isNaN(number) && Math.abs(firstNumber) > 100000000000000) {
-    console.log(
-      'Error : number is not a number or is too big / too small (max: 100000000000000)'
-    );
-    process.exit(1);
+const last = {
+  code: `const initialAmount = 1000;
+  const lossPercentage = 5;
+  let currentAmount = initialAmount;
+  let days = 0;
+  
+  while (currentAmount > 0) {
+    currentAmount -= (currentAmount * lossPercentage) / 100;
+    days++;
   }
-}
+  
+  console.log(days);`,
+};
 
-function promptNumber(message) {
-  const number = Number(prompt(message));
+const timeout = (ms) =>
+  new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('Timeout exceeded')), ms)
+  );
 
-  validateNumber(number);
-
-  return number;
-}
-
-function calculateResult(operator, firstNumber, secondNumber) {
-  // Addition
-  if (operator === 1) {
-    return firstNumber + secondNumber;
+const executeWithTimeout = async (code, timeoutDuration) => {
+  try {
+    const result = await Promise.race([eval(code), timeout(timeoutDuration)]);
+    return result;
+  } catch (error) {
+    throw error; // ou vous pouvez traiter l'erreur comme vous le souhaitez
   }
+};
 
-  if (operator === 2) {
-    return firstNumber - secondNumber;
+const main = async () => {
+  try {
+    const result = await executeWithTimeout(last.code, 5000); // 5000ms = 5 secondes
+    console.log(result);
+  } catch (error) {
+    console.error('Error during evaluation:', error.message);
   }
+};
 
-  if (operator === 3) {
-    return firstNumber * secondNumber;
-  }
-
-  if (operator === 4) {
-    if (secondNumber === 0) {
-      console.log('Error : divion by 0');
-      process.exit();
-    }
-    return firstNumber / secondNumber;
-  }
-}
-
-console.log('ADDITION-MASTER ™️');
-
-console.log(`Choose an operator :
-1. Addition
-2. Soustraction
-3. Multiplication
-4. Division`);
-
-const operator = Number(prompt('Enter the operator : '));
-
-if (operator !== 1 && operator !== 2 && operator !== 3 && operator !== 4) {
-  console.log('Error : operator is not 1, 2, 3 or 4');
-  process.exit(1);
-}
-
-const firstNumber = promptNumber('Enter the first number : ');
-
-const secondNumber = promptNumber('Enter the second number : ');
-
-const result = calculateResult(operator, firstNumber, secondNumber);
-
-console.log('The result : ', result);
+main();
