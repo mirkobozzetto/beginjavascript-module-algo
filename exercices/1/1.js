@@ -12,7 +12,7 @@ function readFileContent(file) {
 }
 
 const findLargestSum = (file) => {
-  // 🦁 Utilise readFileContent pour lire le fichier et stock dans une variable fileContent
+  // 🦁 Utilise readFileContent pour lire le fichier et stocke-le dans une variable fileContent
   // 🦁 Trouve les lutins en utilisant `.split("\n\n")` dans notre liste
   // 🦁 Initialise une variable largestSum à 0
   // 🦁 Pour chaque lutin (boucle for)
@@ -33,7 +33,7 @@ export const part1 = (file) => {
 
 // À faire après
 export const part2 = (file) => {
-  // 🦁 Pour la partie 2, utiliser la function ici
+  // 🦁 Pour la partie 2, utilise la fonction ici
   return 0;
 };
 
