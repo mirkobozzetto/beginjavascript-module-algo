@@ -8,21 +8,23 @@ export const currentDirPath = dirname(currentFilePath);
 function readFileContent(file) {
   const p = join(currentDirPath, file);
   const fileContent = fs.readFileSync(p).toString();
+  const
   return fileContent;
 }
 
 const findLargestSum = (file) => {
-  // 🦁 Utilise readFileContent pour lire le fichier et stocke-le dans une variable fileContent
-  // 🦁 Trouve les lutins en utilisant `.split("\n\n")` dans notre liste
-  // 🦁 Initialise une variable largestSum à 0
-  // 🦁 Pour chaque lutin (boucle for)
-  // 🦁   Trouve les calories en utilisant `.split("\n")` dans notre liste
-  // 🦁   Initialise une variable sum à 0
-  // 🦁   Pour chaque calorie (boucle for)
-  // 🦁     Ajoute la calorie à la variable sum
-  // 🦁   Si la variable sum est plus grande que la variable largestSum
-  // 🦁     Mets la variable sum dans la variable largestSum
-  // 🦁 Retourne la variable largestSum
+  const fileContent = readFileContent(file);
+  const lines = fileContent.split('\n\n');
+
+  let largestSum = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const calories = lines[i];
+
+    for (let j = 0; j < lines.length; j++) {
+
+    }
+  }
 
   return 0;
 };
