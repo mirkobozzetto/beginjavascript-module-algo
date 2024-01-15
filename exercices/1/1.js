@@ -8,7 +8,6 @@ export const currentDirPath = dirname(currentFilePath);
 function readFileContent(file) {
   const p = join(currentDirPath, file);
   const fileContent = fs.readFileSync(p).toString();
-  const
   return fileContent;
 }
 
@@ -20,9 +19,9 @@ const findLargestSum = (file) => {
 
   for (let i = 0; i < lines.length; i++) {
     const calories = lines[i];
-
+    let sum = 0;
     for (let j = 0; j < lines.length; j++) {
-
+      sum += Number(calories[j]);
     }
   }
 
