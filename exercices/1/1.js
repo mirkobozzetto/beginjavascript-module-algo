@@ -13,19 +13,23 @@ function readFileContent(file) {
 
 const findLargestSum = (file) => {
   const fileContent = readFileContent(file);
-  const lines = fileContent.split('\n\n');
-
+  const paragraphs = fileContent.split('\n\n');
   let largestSum = 0;
 
-  for (let i = 0; i < lines.length; i++) {
-    const calories = lines[i];
+  for (let i = 0; i < paragraphs.length; i++) {
+    const lines = paragraphs[i].split('\n');
     let sum = 0;
+
     for (let j = 0; j < lines.length; j++) {
-      sum += Number(calories[j]);
+      sum += +lines[j];
+    }
+
+    if (sum > largestSum) {
+      largestSum = sum;
     }
   }
 
-  return 0;
+  return largestSum;
 };
 
 export const part1 = (file) => {
